@@ -1,6 +1,7 @@
 (function() {
   require(['/plugins.local/favicon_badge/favico.min.js'], function(Favico) {
     let favicon = new Favico();
+    let badgeText = '';
 
     var init = function() {
       let target = document.querySelector('title');
@@ -16,12 +17,13 @@
     }
 
     var checkTitle = function() {
-      let count = document.title.match(/^\((\d+)\)/);
-      if (count) {
+      let match = document.title.match(/^\((\d+)\)/);
+      if (match && match[1] !== badgeText) {
         // console.log("Favicon count: ", count);
-        favicon.badge(count[1]);
+        badgeText = match[1];
+        favicon.badge(badgeText);
       }
-      else {
+      else if (match === null) {
         // console.log("Favicon: No unread articles");
         favicon.reset();
       }

@@ -1,5 +1,7 @@
 (function() {
   require(['/plugins.local/favicon_badge/favico.min.js'], function(Favico) {
+    let favicon = new Favico();
+
     var init = function() {
       let target = document.querySelector('title');
       let observer = new MutationObserver(function(mutations) {
@@ -15,12 +17,14 @@
 
     var checkTitle = function() {
       let count = document.title.match(/^\((\d+)\)/);
-      console.log("Favicon count: ", count);
-      let favicon = new Favico();
-      if (count)
+      if (count) {
+        // console.log("Favicon count: ", count);
         favicon.badge(count[1]);
-      else
+      }
+      else {
+        // console.log("Favicon: No unread articles");
         favicon.reset();
+      }
     }
 
     init();

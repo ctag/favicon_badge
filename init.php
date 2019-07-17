@@ -4,7 +4,7 @@ class Favicon_Badge extends Plugin {
 	function about() {
 		return array(1.0,
 			"Add a badge to favicon",
-			"ZeGuigui, RaMeR, ctag");
+			"ZeGuigui, RaMeR, ctag, aeritir");
 	}
 
 	function init($host) {
